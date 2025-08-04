@@ -1,0 +1,19 @@
+\begin{frame}{The Goal: Minimizing Error}
+    \framesubtitle{The Fundamental Task}
+    \begin{itemize}
+        \item The fundamental task in training a neural network is to find the optimal set of parameters (\bhighlight{weights W}) for a given architecture that minimizes the difference between the network's output and the true target values.
+        \item This difference is quantified by a \bhighlight{cost function} (or loss function).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The Goal: Minimizing Error}
+    \framesubtitle{The Setup}
+    \begin{itemize}
+        \item We are given a network architecture, which is a parametric function $f(x; W)$, and a set of training data $(x^{(n)}, y^{(n)})$.
+        \item The total error $E(W)$ is the average loss over all N training instances:
+        \[
+            E(W) = \frac{1}{N} \sum_{n=1}^{N} \text{loss}(f(x^{(n)}; W), y^{(n)})
+        \]
+        \item Our goal is to find the weights $W$ that \bhighlight{minimize this cost function}.
+    \end{itemize}
+\end{frame}
