@@ -1,0 +1,18 @@
+# Older lectures
+*.pptx
+
+# LaTeX intermediate and log files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Presentation and navigation files
+*.nav
+*.snm
+*.vrb

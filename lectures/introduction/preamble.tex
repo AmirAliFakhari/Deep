@@ -1,0 +1,156 @@
+% ──────────────────────────────────────────────────────────────────────────────
+%                         BEAMER DOCUMENT PREAMBLE
+% ──────────────────────────────────────────────────────────────────────────────
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 0. BASICS/UTILITY
+% ──────────────────────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{extarrows}
+\usepackage{pgffor}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage[svgnames]{xcolor}
+\usepackage[percent]{overpic}
+\usepackage[export]{adjustbox}
+\usepackage{xparse}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 1. THEME & FONT THEME
+% ──────────────────────────────────────────────────────────────────────────────
+\usetheme{default}                  % Base beamer theme
+\usecolortheme{default}             % Base color theme
+\usefonttheme{structurebold}        % Bold structural fonts
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 2. PAGE MARGINS & FRAME TITLE LAYOUT
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+\setbeamertemplate{frametitle}[default][%
+  left,                              % Align title to the left
+  leftskip=0.5cm,                    % Indent from left edge
+  sep=0.5cm                          % Space between title and content
+]
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 3. COLOR DEFINITIONS
+% ──────────────────────────────────────────────────────────────────────────────
+\definecolor{primaryblue}{RGB}{70, 130, 180}  % Accent blue
+\definecolor{primaryred}{RGB}{229, 57, 53}  % Accent red
+\definecolor{lightgray}{RGB}{245, 245, 245}   % Light background gray
+\definecolor{darkgray}{RGB}{80, 80, 80}       % Dark text gray
+\definecolor{bluegrey}{RGB}{120, 144, 156}     % Caption label color
+\definecolor{grey}{RGB}{158, 158, 158}          % Caption text color
+\definecolor{cquoteframe}{RGB}{30,60,100}          % Quote box frame
+\definecolor{cquoteback}{RGB}{240,245,252}          % Quote box background fill
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 4. BEAMER COLOR THEMES
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamercolor{structure}{fg=primaryblue}    % Structural elements
+\setbeamercolor{frametitle}{fg=primaryblue}   % Frame title
+
+% Block styles
+\setbeamercolor{block title}{bg=primaryblue, fg=white}
+\setbeamercolor{block body}{bg=lightgray}
+\setbeamercolor{block title alerted}{bg=red!80, fg=white}
+\setbeamercolor{block body alerted}{bg=red!10}
+\setbeamercolor{block title example}{bg=green!80, fg=white}
+\setbeamercolor{block body example}{bg=green!10}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 5. NAVIGATION & FOOTLINE
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamertemplate{navigation symbols}{}      % Remove navigation symbols
+
+\setbeamertemplate{footline}{%             % Custom footline with page numbers
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt%
+}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 6. LIST ITEM ICONS
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 7. CUSTOM HIGHLIGHT COMMAND
+% ──────────────────────────────────────────────────────────────────────────────
+\newcommand{\bhighlight}[1]{\textcolor{primaryblue}{#1}}
+\newcommand{\rhighlight}[1]{\textcolor{primaryred}{#1}}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 8. SENTIMENT COLORS & COMMANDS
+% ──────────────────────────────────────────────────────────────────────────────
+\definecolor{BeamerNegativeRed}{rgb}{0.8,0.1,0.1}
+\definecolor{BeamerPositiveGreen}{rgb}{0.05,0.5,0.05}
+\definecolor{BeamerNeutralBlue}{rgb}{0.0,0.45,0.85}
+
+\setbeamercolor{negative text}{fg=BeamerNegativeRed}
+\setbeamercolor{positive text}{fg=BeamerPositiveGreen}
+\setbeamercolor{neutral text}{fg=BeamerNeutralBlue}
+
+\newcommand{\negative}[1]{{\usebeamercolor[fg]{negative text}#1}}
+\newcommand{\positive}[1]{{\usebeamercolor[fg]{positive text}#1}}
+\newcommand{\neutral}[1]{{\usebeamercolor[fg]{neutral text}#1}}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 9. CAPTION SETTINGS
+% ──────────────────────────────────────────────────────────────────────────────
+\usepackage{caption}
+\setbeamerfont{caption}{size=\scriptsize}     % Smaller caption font
+\setbeamertemplate{caption}[numbered]          % Number figures/tables
+\newcommand{\gcite}[1]{\textcolor{grey}{#1}}
+
+\newcommand{\insetcaption}[3][]{%
+  \begin{overpic}[#1]{#2}
+    \put(50,3){\makebox(0,0)[c]{\color{gray}\tiny #3}}
+  \end{overpic}%
+}
+% ──────────────────────────────────────────────────────────────────────────────
+% 10. FONTS & MATH SETUP
+% ──────────────────────────────────────────────────────────────────────────────
+\usepackage{fontspec}                           % XeLaTeX or LuaLaTeX font support
+\setsansfont{Linux Biolinum}                    % Primary sans-serif font
+\usepackage{unicode-math}                       % Unicode math support
+\setmathfont{Libertinus Math}                   % Math font
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 11. QUOTES
+% ──────────────────────────────────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+\tcbset{
+  quote/.style={
+      colback=cquoteback,    % fill color
+      colframe=cquoteframe, % border color
+      fonttitle=\bfseries,
+      boxrule=0.8pt,
+      arc=4pt,              % corner radius
+      boxsep=8pt,           % inner padding
+      left=4pt, right=4pt, top=4pt, bottom=4pt,
+      width=0.75\textwidth, % box width
+      center title,
+      before skip=1em,
+      after skip=1em
+    }
+}
+\newenvironment{cquote}
+{\begin{center}%
+    \begin{tcolorbox}[quote]%
+      \centering}
+      {\end{tcolorbox}%
+  \end{center}}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 12. FRAME COLOR MODIFIER
+% ──────────────────────────────────────────────────────────────────────────────
+\newcommand{\setframecolor}[1]{%
+  \setbeamercolor{structure}{fg=#1}
+  \setbeamercolor{frametitle}{fg=#1}
+}

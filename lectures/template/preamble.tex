@@ -1,0 +1,98 @@
+% ──────────────────────────────────────────────────────────────────────────────
+%                         BEAMER DOCUMENT PREAMBLE
+% ──────────────────────────────────────────────────────────────────────────────
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 1. THEME & FONT THEME
+% ──────────────────────────────────────────────────────────────────────────────
+\usetheme{default}                  % Base beamer theme
+\usecolortheme{default}             % Base color theme
+\usefonttheme{structurebold}        % Bold structural fonts
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 2. PAGE MARGINS & FRAME TITLE LAYOUT
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+\setbeamertemplate{frametitle}[default][%
+  left,                              % Align title to the left
+  leftskip=0.5cm,                    % Indent from left edge
+  sep=0.5cm                          % Space between title and content
+]
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 3. COLOR DEFINITIONS
+% ──────────────────────────────────────────────────────────────────────────────
+\definecolor{primaryblue}{RGB}{70, 130, 180}  % Accent blue
+\definecolor{lightgray}{RGB}{245, 245, 245}   % Light background gray
+\definecolor{darkgray}{RGB}{80, 80, 80}       % Dark text gray
+\definecolor{bluegrey}{RGB}{120, 144, 156}     % Caption label color
+\definecolor{grey}{RGB}{158, 158, 158}          % Caption text color
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 4. BEAMER COLOR THEMES
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamercolor{structure}{fg=primaryblue}    % Structural elements
+\setbeamercolor{frametitle}{fg=primaryblue}   % Frame title
+
+% Block styles
+\setbeamercolor{block title}{bg=primaryblue, fg=white}
+\setbeamercolor{block body}{bg=lightgray}
+\setbeamercolor{block title alerted}{bg=red!80, fg=white}
+\setbeamercolor{block body alerted}{bg=red!10}
+\setbeamercolor{block title example}{bg=green!80, fg=white}
+\setbeamercolor{block body example}{bg=green!10}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 5. NAVIGATION & FOOTLINE
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamertemplate{navigation symbols}{}      % Remove navigation symbols
+
+\setbeamertemplate{footline}{%             % Custom footline with page numbers
+    \hfill%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt%
+}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 6. LIST ITEM ICONS
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 7. CUSTOM HIGHLIGHT COMMAND
+% ──────────────────────────────────────────────────────────────────────────────
+\newcommand{\highlight}[1]{\textcolor{primaryblue}{#1}}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 8. SENTIMENT COLORS & COMMANDS
+% ──────────────────────────────────────────────────────────────────────────────
+\definecolor{BeamerNegativeRed}{rgb}{0.8,0.1,0.1}
+\definecolor{BeamerPositiveGreen}{rgb}{0.05,0.5,0.05}
+\definecolor{BeamerNeutralBlue}{rgb}{0.0,0.45,0.85}
+
+\setbeamercolor{negative text}{fg=BeamerNegativeRed}
+\setbeamercolor{positive text}{fg=BeamerPositiveGreen}
+\setbeamercolor{neutral text}{fg=BeamerNeutralBlue}
+
+\newcommand{\negative}[1]{{\usebeamercolor[fg]{negative text}#1}}
+\newcommand{\positive}[1]{{\usebeamercolor[fg]{positive text}#1}}
+\newcommand{\neutral}[1]{{\usebeamercolor[fg]{neutral text}#1}}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 9. CAPTION SETTINGS
+% ──────────────────────────────────────────────────────────────────────────────
+\setbeamerfont{caption}{size=\scriptsize}     % Smaller caption font
+\setbeamertemplate{caption}[numbered]          % Number figures/tables
+
+% \setbeamercolor{caption name}{fg=bluegrey}
+\setbeamercolor{caption}{fg=grey!80!black}
+
+% ──────────────────────────────────────────────────────────────────────────────
+% 10. FONTS & MATH SETUP
+% ──────────────────────────────────────────────────────────────────────────────
+\usepackage{fontspec}                           % XeLaTeX or LuaLaTeX font support
+\setsansfont{Linux Biolinum}                    % Primary sans-serif font
+\usepackage{unicode-math}                       % Unicode math support
+\setmathfont{Libertinus Math}                   % Math font
