@@ -1,7 +1,7 @@
 \begin{frame}{Working with Data}
     \framesubtitle{The Problem with Full-Batch Updates}
     \begin{itemize}
-        \item In standard (or "batch") gradient descent, we compute the gradient by averaging over the \bhighlight{entire training dataset} for a single update step.
+        \item In standard (or "batch") gradient descent, we compute the gradient of the cost function using the \bhighlight{entire training dataset} for a single update step.
         \[ \nabla_{w}E(W) = \frac{1}{N} \sum_{n=1}^{N} \nabla_{w}\text{loss}(f(x^{(n)}; W), y^{(n)}) \]
         \item \textbf{The Problem:} For modern datasets with millions of examples, this is extremely slow. We have to process all data just to make one small step.
     \end{itemize}
@@ -61,14 +61,23 @@
     \framesubtitle{The "Stochastic" Nature}
     \begin{itemize}
         \item The gradient from a single sample is a "noisy" but \bhighlight{unbiased estimate} of the true gradient over the full dataset.
-        \item This high variance means the path to the minimum is erratic and jittery.
+        \item This high variance means the path to the minimum is erratic and jittery. The updates may not always move towards the minimum and can sometimes move away from it.
     \end{itemize}
     \begin{figure}
         \centering
-        % Source: Optimization II.pdf, Page: 47 (zoomed on SGD path)
-        \includegraphics[width=0.6\linewidth]{images/sgd_pathj.png}
-        \caption{The path of SGD is very noisy due to the high variance of single-sample gradients.}
+        % Source: Optimization I.pdf, Page: 9
+        \includegraphics[width=0.2\linewidth]{images/convergence_behaviors.png}
+        \caption{The path of SGD often resembles the "jittering" behavior, where it oscillates around the minimum without perfectly converging.}
     \end{figure}
+\end{frame}
+
+\begin{frame}{Stochastic Gradient Descent (SGD)}
+    \framesubtitle{The Need for Learning Rate Annealing}
+    \begin{itemize}
+        \item Because the gradient is always noisy, the updates will never settle at the exact minimum if the learning rate $\eta$ remains constant. The optimization will just jitter around it indefinitely.
+        \item To ensure convergence, the learning rate must be \bhighlight{decayed over time}. This is called \bhighlight{learning rate annealing} or scheduling.
+        \item A common strategy is to start with a relatively high learning rate for fast initial progress and gradually reduce it to allow for fine-tuning near the minimum.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Mini-Batch Gradient Descent}
@@ -89,7 +98,7 @@
     \framesubtitle{Advantages}
     \begin{itemize}
         \item \textbf{Efficiency:} It allows us to take advantage of the massive parallelization capabilities of GPUs. Matrix operations on a mini-batch are much more efficient than processing samples one by one.
-        \item \textbf{Stability:} By averaging gradients over a small batch, we reduce the variance of the updates, leading to a more stable convergence than pure SGD.
+        \item \textbf{Stability:} By averaging gradients over a small batch, we reduce the variance of the updates, leading to a more stable convergence than pure SGD. The path towards the minimum is less erratic.
     \end{itemize}
 \end{frame}
 
