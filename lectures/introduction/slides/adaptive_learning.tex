@@ -1,0 +1,88 @@
+\subsection{Adaptive Learning Rate Methods}
+
+\begin{frame}{The Optimizer's Dilemma}
+    \frametitle{One Learning Rate to Rule Them All?}
+    \begin{itemize}
+        \item We've seen that Momentum helps us move faster by building velocity.
+        \item \textbf{But there's a problem:} It's like driving a car where all four wheels are forced to turn at the same angle. On a winding road (our ill-conditioned error surface), this is clumsy.
+        \item Some parameters (wheels) need to turn sharply (small learning rate), while others need to go straight (large learning rate).
+        \item \textbf{The Goal:} Give each parameter its own "smart" learning rate that adapts automatically to the terrain it's on.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Adagrad: The Historian}
+    \frametitle{Every Gradient Leaves a Mark}
+    \bhighlight{Adagrad} was a pioneering idea that gave each parameter a personal learning rate.
+    \begin{itemize}
+        \item \textbf{The Strategy:} Keep a running sum of the squares of all past gradients for each parameter.
+        \item Parameters that have seen large gradients in the past will have their learning rate aggressively decreased.
+        \item The update rule:
+            $$ s^{(k)} = s^{(k-1)} + (\nabla_w E)^2 $$
+            $$ W^{(k+1)} = W^{(k)} - \frac{\eta}{\sqrt{s^{(k)} + \epsilon}} \nabla_w E $$
+        \item \textbf{The Fatal Flaw:} The denominator, $s^{(k)}$, is a sum that only ever grows, it eventually stops the learning process entirely as the learning rate vanishes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{RMSProp: The Forgetful Historian}
+    \frametitle{Remembering Only the Recent Past}
+    \bhighlight{RMSProp} solves Adagrad's problem by forgetting the distant past and focusing only on recent gradient history.
+    \begin{itemize}
+        \item Instead of a sum, it uses an \textbf{exponentially decaying moving average} of squared gradients.
+        \item This prevents the denominator from growing indefinitely, allowing learning to continue.
+        \item The update rule:
+            $$ \overline{(\nabla_w E^2)}^{(k)} = \beta \overline{(\nabla_w E^2)}^{(k-1)} + (1-\beta)(\nabla_w E)^2 $$
+            $$ W^{(k+1)} = W^{(k)} - \frac{\eta}{\sqrt{\overline{(\nabla_w E^2)}^{(k)} + \epsilon}} \nabla_w E $$
+        \item It effectively normalizes each parameter's update by the magnitude of its recent gradients.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Adam: The Best of Both Worlds}
+    \frametitle{Adaptive Moment Estimation}
+    Adam is the most popular optimizer because it combines the best ideas we've seen so far.
+    \begin{itemize}
+        \item It's a hybrid of \textbf{Momentum} and \textbf{RMSProp}.
+        \item It uses a moving average of the gradient itself (like Momentum) to track the direction of travel (the \textit{first moment}).
+        \item It uses a moving average of the squared gradient (like RMSProp) to adapt the learning rate for each parameter (the \textit{second moment}).
+    \end{itemize}
+    \begin{alertblock}{The Result}
+        An optimizer that knows both where it's going and how fast it should get there, for every single parameter.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{The Adam Update Rule}
+    \frametitle{Putting It All Together}
+    Adam maintains two moving averages, $m$ (for momentum) and $v$ (for variance scaling), and includes a bias-correction step.
+    \begin{enumerate}
+        \item First moment (Momentum):
+            $$ m^{(k)} = \beta_1 m^{(k-1)} + (1-\beta_1) g^{(k)} $$
+        \item Second moment (RMSProp):
+            $$ v^{(k)} = \beta_2 v^{(k-1)} + (1-\beta_2) (g^{(k)})^2 $$
+        \item Bias Correction (to counteract initialization at zero):
+            $$ \hat{m}^{(k)} = \frac{m^{(k)}}{1 - \beta_1^k} \quad , \quad \hat{v}^{(k)} = \frac{v^{(k)}}{1 - \beta_2^k} $$
+        \item Final Update Rule:
+            $$ W^{(k+1)} = W^{(k)} - \frac{\eta}{\sqrt{\hat{v}^{(k)} + \epsilon}} \hat{m}^{(k)} $$
+    \end{enumerate}
+    \footnotesize{Common hyperparameters: $\eta$ (needs tuning), $\beta_1=0.9$, $\beta_2=0.999$, $\epsilon=10^{-8}$.}
+\end{frame}
+
+\begin{frame}{The Problem of Bias in Adam}
+    \frametitle{The "Cold Start" Problem}
+    \begin{itemize}
+        \item Adam's moment vectors, $m$ and $v$, are initialized to zero.
+        \item In the first few iterations, the moving averages are heavily weighted by these initial zeros, making them biased towards zero.
+        \item This "cold start" causes the optimizer to take very small steps at the beginning of training, when it should be making the most progress.
+    \end{itemize}
+    \begin{alertblock}{The Solution: Bias Correction}
+        The bias correction step divides the moment estimates by a factor that is initially small and approaches 1 over time. This scales up the early, biased estimates, giving the optimizer a "warm start" and allowing it to take meaningful steps from the very beginning.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{A Word of Caution}
+    \frametitle{Is Newer Always Better?}
+    \begin{itemize}
+        \item While Adam is a fantastic default, it's not a silver bullet.
+        \item Recent research has shown that adaptive methods can sometimes converge to "sharper" minima that generalize more poorly than the "flatter" minima found by well-tuned \bhighlight{SGD with Momentum}.
+        \item There is no single optimizer that dominates across all possible problems.
+        \item \textbf{The Takeaway:} Adam is a great starting point, but if you're aiming for state-of-the-art results, it can be worth trying to carefully tune SGD+Momentum as well.
+    \end{itemize}
+\end{frame}
