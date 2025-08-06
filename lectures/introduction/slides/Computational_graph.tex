@@ -93,6 +93,7 @@
 
 \begin{frame}{The Computational Graph}
     \framesubtitle{Backpropagation Example: Step 2}
+    \small
     \begin{itemize}
         \item The first gate is the $1/x$ gate.
         \item \textbf{Upstream Gradient}: 1.0
@@ -102,7 +103,7 @@
     \begin{figure}
         \centering
         % Source: MLP & Back-prop.pdf, Page: 43
-        \includegraphics[width=\linewidth]{images/sigmoid_backprop_2.png}
+        \includegraphics[width=0.9\linewidth]{images/sigmoid_backprop_2.png}
     \end{figure}
 \end{frame}
 
@@ -123,6 +124,7 @@
 
 \begin{frame}{The Computational Graph}
     \framesubtitle{Backpropagation Example: Step 4}
+    \small
     \begin{itemize}
         \item Next is the `exp` gate.
         \item \textbf{Upstream Gradient}: -0.53
@@ -138,6 +140,7 @@
 
 \begin{frame}{The Computational Graph}
     \framesubtitle{Backpropagation Example: Final Steps}
+    \small
     \begin{itemize}
         \item The gradient is propagated backward through the remaining gates (`*-1`, `+`, `*`).
         \item For example, at the top-most `*` gate (for $w_0, x_0$):
@@ -151,7 +154,7 @@
     \begin{figure}
         \centering
         % Source: MLP & Back-prop.pdf, Page: 53
-        \includegraphics[width=\linewidth]{images/sigmoid_backprop_final.png}
+        \includegraphics[width=0.8\linewidth]{images/sigmoid_backprop_final.png}
         \caption{The final computed gradients for each weight and input.}
     \end{figure}
 \end{frame}
