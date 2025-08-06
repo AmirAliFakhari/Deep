@@ -1,7 +1,7 @@
 \subsection{Second-Order Optimization (Newton's Method)}
 
-\begin{frame}{Recap: The Limits of First-Order Methods}
-    \frametitle{The Problem with a Single Learning Rate}
+\begin{frame}{The Limits of First-Order Methods}
+    \framesubtitle{The Problem with a Single Learning Rate}
     \begin{itemize}
         \item Vanilla Gradient Descent uses a single learning rate for all parameters.
         \item On ill-conditioned error surfaces (long, narrow valleys), this is inefficient.
@@ -11,7 +11,7 @@
 \end{frame}
 
 \begin{frame}{Second-Order Optimization: The Idea}
-    \frametitle{Using Curvature for Faster Convergence}
+    \framesubtitle{Using Curvature for Faster Convergence}
     Instead of a linear approximation, second-order methods use a local \textbf{quadratic approximation} of the loss function.
     \begin{itemize}
         \item This is based on the second-order Taylor expansion for loss function E($w$) around the current point $w^{(k)}$:
@@ -31,7 +31,7 @@
 \end{frame}
 
 \begin{frame}{Second-Order Optimization: The Idea}
-    \frametitle{Intuition Behind Newton's Method}
+    \framesubtitle{Intuition Behind Newton's Method}
     \begin{figure}
         \centering
         \begin{minipage}{.5\textwidth}
@@ -47,7 +47,7 @@
 \end{frame}
 
 \begin{frame}{Newton's Method: The Update Rule}
-    \frametitle{Incorporating the Hessian}
+    \framesubtitle{Incorporating the Hessian}
     The update rule incorporates the \textbf{Hessian matrix ($H$)}, the matrix of second derivatives, which describes the local curvature.
     \begin{itemize}
         \item The update rule is:
@@ -60,7 +60,7 @@
 
 
 \begin{frame}{Visualizing Second-Order Optimization}
-    \frametitle{The Effect of Preconditioning}
+    \framesubtitle{The Effect of Preconditioning}
     
     \begin{figure}
         \centering
@@ -96,7 +96,7 @@
 
 
 \begin{frame}{The Drawbacks of Newton's Method}
-    \frametitle{Why It's Impractical for Deep Learning}
+    \framesubtitle{Why It's Impractical for Deep Learning}
     Despite its rapid convergence, Newton's method is not used for large-scale deep learning.
     \begin{itemize}
         \item \textbf{Prohibitive Computational Cost}:
@@ -113,7 +113,7 @@
 \end{frame}
 
 \begin{frame}{Quasi-Newton Methods: A Practical Compromise}
-    \frametitle{Approximating the Inverse Hessian}
+    \framesubtitle{Approximating the Inverse Hessian}
     \begin{itemize}
         \item \textbf{Quasi-Newton methods}, like BFGS, avoid the full computation of the inverse Hessian.
         \item They iteratively build up an approximation of the inverse Hessian using only first-order gradient information.

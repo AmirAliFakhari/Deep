@@ -3,7 +3,7 @@
 \subsection{Explicit Regularization}
 
 \begin{frame}{The Problem: A Model That Memorizes}
-    \frametitle{Overfitting and the Failure to Generalize}
+    \framesubtitle{Overfitting and the Failure to Generalize}
     \begin{itemize}
         \item A model that performs perfectly on training data but fails on new, unseen data has \textbf{overfitted}.
         \item It's like a student who memorizes the answers to past exams but hasn't learned the underlying concepts.
@@ -11,13 +11,13 @@
     \end{itemize}
     \begin{figure}
         % Placeholder for the overfitting graph from Regularization.pdf, p. 5
-        \includegraphics[width=0.7\textwidth]{images/generalization_gap.png}
+        \includegraphics[width=0.6\textwidth]{images/generalization_gap.png}
         \caption{A classic sign of overfitting: training error continues to decrease while test (validation) error begins to rise.}
     \end{figure}
 \end{frame}
 
 \begin{frame}{The Solution: A Penalty for Complexity}
-    \frametitle{Introducing Regularization}
+    \framesubtitle{Introducing Regularization}
     How do we encourage our model to learn the true underlying pattern instead of just memorizing the data points?
     \begin{itemize}
         \item We can add a \bhighlight{penalty term} $R(W)$ to our loss function.
@@ -33,7 +33,7 @@
 \end{frame}
 
 \begin{frame}{L2 Regularization (Weight Decay)}
-    \frametitle{L2 Regularization (Weight Decay)}
+    \framesubtitle{The Most Common Regularizer}
     L2 regularization penalizes the squared magnitude of the weights. It encourages the network to use small weights.
     \begin{itemize}
         \item The penalty term is the squared L2 norm of the weights:
@@ -48,7 +48,7 @@
 \end{frame}
 
 \begin{frame}{The Intuition Behind L2 Regularization}
-    \frametitle{Why Do Smaller Weights Generalize Better?}
+    \framesubtitle{Why Do Smaller Weights Generalize Better?}
     \begin{itemize}
         \item \textbf{Smoother Functions:} Penalizing large weights forces the network to learn smoother, less complex functions.
         \item \textbf{Linear Regime:} With tanh or sigmoid activations, small weights keep neurons in their linear range. Since linear neurons can only learn simple linear functions, L2 regularization promotes this low-complexity behavior.
@@ -61,7 +61,7 @@
 \end{frame}
 
 \begin{frame}{The Effect of the Regularization Strength $\lambda$}
-    \frametitle{Finding the Right Balance}
+    \framesubtitle{Finding the Right Balance}
     The hyperparameter $\lambda$ controls the trade-off between fitting the data and keeping the weights small.
     \begin{figure}
         % Placeholder for the lambda effect visualization from Regularization.pdf, p. 11

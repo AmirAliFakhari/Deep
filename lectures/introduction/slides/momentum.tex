@@ -1,7 +1,7 @@
 \subsection{Momentum Methods}
 
 \begin{frame}{Momentum Methods}
-    \frametitle{Accelerating Gradient Descent}
+    \framesubtitle{Accelerating Gradient Descent}
     \begin{itemize}
         \item Momentum methods are designed to accelerate learning, especially in deep, narrow valleys where vanilla gradient descent is slow.
         \item \textbf{The Core Idea:} Keep track of past gradients to build up "velocity" in consistent directions and dampen oscillations in steep directions.
@@ -11,7 +11,7 @@
 \end{frame}
 
 \begin{frame}{Momentum Methods}
-    \frametitle{Intuition Behind Momentum}
+    \framesubtitle{Intuition Behind Momentum}
     \begin{figure}
         \centering
         \begin{minipage}{0.5\textwidth}
@@ -29,7 +29,7 @@
 \end{frame}
 
 \begin{frame}{Standard Momentum}
-    \frametitle{The Momentum Update Rule}
+    \framesubtitle{The Momentum Update Rule}
     This method adds a fraction of the previous update vector to the current gradient step.
     \begin{itemize}
         \item A velocity vector, $v$, accumulates an \bhighlight{exponentially decaying moving average} of past gradients.
@@ -41,7 +41,7 @@
 \end{frame}
 
 \begin{frame}{Nesterov Accelerated Gradient (NAG)}
-    \frametitle{A Smarter Momentum}
+    \framesubtitle{A Smarter Momentum}
     Nesterov Accelerated Gradient (NAG) is a slightly different, and often more effective, version of the momentum update.
     \begin{itemize}
         \item \textbf{The Idea:} Instead of calculating the gradient at the current position, NAG "looks ahead" by calculating the gradient at a point where the previous velocity would have taken it.
@@ -53,7 +53,7 @@
 \end{frame}
 
 \begin{frame}{Visual Comparison: Momentum vs. NAG}
-    \frametitle{The "Look-Ahead" Advantage}
+    \framesubtitle{The "Look-Ahead" Advantage}
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
             \textbf{Standard Momentum}

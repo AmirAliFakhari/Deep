@@ -1,7 +1,7 @@
 \subsection{Adaptive Learning Rate Methods}
 
 \begin{frame}{The Optimizer's Dilemma}
-    \frametitle{One Learning Rate to Rule Them All?}
+    \framesubtitle{One Learning Rate to Rule Them All?}
     \begin{itemize}
         \item We've seen that Momentum helps us move faster by building velocity.
         \item \textbf{But there's a problem:} It's like driving a car where all four wheels are forced to turn at the same angle. On a winding road (our ill-conditioned error surface), this is clumsy.
@@ -11,7 +11,7 @@
 \end{frame}
 
 \begin{frame}{Adagrad: The Historian}
-    \frametitle{Every Gradient Leaves a Mark}
+    \framesubtitle{Every Gradient Leaves a Mark}
     \bhighlight{Adagrad} was a pioneering idea that gave each parameter a personal learning rate.
     \begin{itemize}
         \item \textbf{The Strategy:} Keep a running sum of the squares of all past gradients for each parameter.
@@ -24,7 +24,7 @@
 \end{frame}
 
 \begin{frame}{RMSProp: The Forgetful Historian}
-    \frametitle{Remembering Only the Recent Past}
+    \framesubtitle{Remembering Only the Recent Past}
     \bhighlight{RMSProp} solves Adagrad's problem by forgetting the distant past and focusing only on recent gradient history.
     \begin{itemize}
         \item Instead of a sum, it uses an \textbf{exponentially decaying moving average} of squared gradients.
@@ -37,7 +37,7 @@
 \end{frame}
 
 \begin{frame}{Adam: The Best of Both Worlds}
-    \frametitle{Adaptive Moment Estimation}
+    \framesubtitle{Adaptive Moment Estimation}
     Adam is the most popular optimizer because it combines the best ideas we've seen so far.
     \begin{itemize}
         \item It's a hybrid of \textbf{Momentum} and \textbf{RMSProp}.
@@ -50,7 +50,8 @@
 \end{frame}
 
 \begin{frame}{The Adam Update Rule}
-    \frametitle{Putting It All Together}
+    \framesubtitle{Putting It All Together}
+    \small
     Adam maintains two moving averages, $m$ (for momentum) and $v$ (for variance scaling), and includes a bias-correction step.
     \begin{enumerate}
         \item First moment (Momentum):
@@ -66,7 +67,7 @@
 \end{frame}
 
 \begin{frame}{The Problem of Bias in Adam}
-    \frametitle{The "Cold Start" Problem}
+    \framesubtitle{The "Cold Start" Problem}
     \begin{itemize}
         \item Adam's moment vectors, $m$ and $v$, are initialized to zero.
         \item In the first few iterations, the moving averages are heavily weighted by these initial zeros, making them biased towards zero.
@@ -78,7 +79,7 @@
 \end{frame}
 
 \begin{frame}{A Word of Caution}
-    \frametitle{Is Newer Always Better?}
+    \framesubtitle{Is Newer Always Better?}
     \begin{itemize}
         \item While Adam is a fantastic default, it's not a silver bullet.
         \item Recent research has shown that adaptive methods can sometimes converge to "sharper" minima that generalize more poorly than the "flatter" minima found by well-tuned \bhighlight{SGD with Momentum}.

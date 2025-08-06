@@ -3,7 +3,7 @@
 \subsection{The Problem of Poor Conditioning}
 
 \begin{frame}{The Problem of Poor Conditioning}
-    \frametitle{The Challenge of the Error Surface}
+    \framesubtitle{The Challenge of the Error Surface}
     \begin{itemize}
         \item The error surface of a neural network can have very different curvature along different directions.
         \item When the contours of the error surface are elongated ellipsoids, the problem is said to be \textbf{poorly conditioned} or \textbf{ill-conditioned}.
@@ -17,7 +17,7 @@
 \end{frame}
 
 \begin{frame}{Consequences of Poor Conditioning}
-    \frametitle{Inefficient Gradient Descent}
+    \framesubtitle{Inefficient Gradient Descent}
     A single learning rate struggles on an ill-conditioned surface.
     \begin{itemize}
         \item The gradient vector is always perpendicular to the contour lines.
@@ -36,7 +36,7 @@
 \end{frame}
 
 \begin{frame}{The Learning Rate Dilemma}
-    \frametitle{One Step Size, Two Different Needs}
+    \framesubtitle{One Step Size, Two Different Needs}
     The core issue is that different directions require different optimal learning rates.
     \begin{itemize}
         \item To prevent divergence, the learning rate $\eta$ must be small enough for the steepest direction.

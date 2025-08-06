@@ -1,5 +1,6 @@
 \begin{frame}{Working with Data}
     \framesubtitle{The Problem with Full-Batch Updates}
+    \small
     \begin{itemize}
         \item In standard (or "batch") gradient descent, we compute the gradient of the cost function using the \bhighlight{entire training dataset} for a single update step.
         \[ \nabla_{w}E(W) = \frac{1}{N} \sum_{n=1}^{N} \nabla_{w}\text{loss}(f(x^{(n)}; W), y^{(n)}) \]
@@ -8,7 +9,7 @@
     \begin{figure}
         \centering
         % Source: Optimization II.pdf, Page: 11
-        \includegraphics[width=0.7\linewidth]{images/full_batch_idea.png}
+        \includegraphics[width=0.6\linewidth]{images/full_batch_idea.png}
         \caption{In batch gradient descent, the algorithm tries to adjust the model based on all training points simultaneously.}
     \end{figure}
 \end{frame}
